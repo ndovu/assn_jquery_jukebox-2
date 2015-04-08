@@ -1,29 +1,23 @@
-// promptAndPlay
-//
-// Prompts the user to enter a song.
-// Plays the entered song.
-// Repeats when the song is complete.
-//
-
-
-// Get things going.
-
 var promptAndPlay = function() {
   console.log('You have entered the promptAndPlay function');
   var songString = prompt("Welcome to JukeBox!\nEnter a song to play:");
   var song = parseSong(songString);
-  playSong(song, 500, changeButtonLabel);
+  // added callback function enablePlayButton to renable the play button
+  playSong(song, 500, enablePlayButton);
 };
 
+// change button text to say playing and disable
 var playAndButtonPlaying = function() {
   $('button').html('Playing...');  
   $('button').attr('disabled', true);
   promptAndPlay();
 }
 
-var changeButtonLabel = function() {
+// re-enable the play button
+var enablePlayButton = function() {
   $('button').html('Play');
   $('button').attr('disabled', false);
 }
 
+// add on click behavior to button once the document is ready
 $(document).ready(function() {$('button').on('click', playAndButtonPlaying)});
